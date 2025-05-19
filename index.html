@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捕捉大老鼠</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>捕捉大老鼠</h1>
+    <!-- 隐藏原生文件选择按钮 -->
+     <h4>第一步：上传碎片并选择合适模式</h4>
+    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+        <div>
+            <input type="file" id="imageInput" multiple accept="image/png, image/jpeg" style="display: none;">
+            <!-- 自定义按钮 -->
+            <label for="imageInput" id="customFileButton">上传老鼠碎片</label>
+        </div>
+        <!-- 添加显示图片数量的元素 -->
+        <p id="imageCount">已上传碎片数量: 0</p>
+        <!-- 添加模式选择标题 -->
+        <h3>图片合成模式</h3>
+        <select id="mergeMode">
+            <option value="max">最大值模式</option>
+            <option value="min">最小值模式</option>
+        </select>
+    </div>
+    <div id="previewContainer"></div>
+    <h4>第二步：碎片合成中...</h4>
+    <button id="mergeButton">合成碎片</button>
+    <div id="mergedImageContainer"></div>
+    <h4>第三步：如果反转，那么...</h4>
+    <button id="negativeButton">反转颜色</button>
+    <div id="negativeImageContainer"></div>
+    <canvas id="resultCanvas" style="display: none;"></canvas>
+    <script src="script.js"></script>
+    <!-- 添加版权联系信息 -->
+    <footer id="copyright">
+        <p>版权所有 &copy; kwhao  联系邮箱: <a href="mailto:kwh@kwhao.com">kwh@kwhao.com</a></p>
+        <p>项目Github地址：<a href="https://github.com/kwhao/RatPuzzle/">https://github.com/kwhao/RatPuzzle/</a></p>
+    </footer>
+</body>
+
+</html>
