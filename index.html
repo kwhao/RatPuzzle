@@ -9,37 +9,73 @@
 </head>
 
 <body>
-    <h1>捕捉大老鼠</h1>
-    <!-- 隐藏原生文件选择按钮 -->
-     <h4>第一步：上传碎片并选择合适模式</h4>
-    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
-        <div>
-            <input type="file" id="imageInput" multiple accept="image/png, image/jpeg" style="display: none;">
-            <!-- 自定义按钮 -->
-            <label for="imageInput" id="customFileButton">上传老鼠碎片</label>
-        </div>
-        <!-- 添加显示图片数量的元素 -->
-        <p id="imageCount">已上传碎片数量: 0</p>
-        <!-- 添加模式选择标题 -->
-        <h3>图片合成模式</h3>
-        <select id="mergeMode">
-            <option value="max">最大值模式</option>
-            <option value="min">最小值模式</option>
-        </select>
+    <!-- 添加功能切换按钮 -->
+    <div id="modeSwitch">
+        <button class="modeButton active" data-mode="merge">碎片合成</button>
+        <button class="modeButton" data-mode="split">打散碎片</button>
     </div>
-    <div id="previewContainer"></div>
-    <h4>第二步：碎片合成中...</h4>
-    <button id="mergeButton">合成碎片</button>
-    <div id="mergedImageContainer"></div>
-    <h4>第三步：如果反转，那么...</h4>
-    <button id="negativeButton">反转颜色</button>
-    <div id="negativeImageContainer"></div>
+
+    <h1>捕捉大老鼠</h1>
+
+    <!-- 碎片合成部分 -->
+    <div id="mergeSection">
+        <!-- 隐藏原生文件选择按钮 -->
+        <h4>第一步：上传碎片并选择合适模式</h4>
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+            <div>
+                <input type="file" id="imageInput" multiple accept="image/png, image/jpeg" style="display: none;">
+                <!-- 自定义按钮 -->
+                <label for="imageInput" id="customFileButton">上传老鼠碎片</label>
+            </div>
+            <!-- 添加显示图片数量的元素 -->
+            <p id="imageCount">已上传碎片数量: 0</p>
+            <!-- 添加模式选择标题 -->
+            <h3>碎片合成模式</h3>
+            <select id="mergeMode">
+                <option value="min">最小值模式</option>
+                <option value="max">最大值模式</option>
+            </select>
+        </div>
+        <div><span style="font-size: 12px;">如果碎片合成后是空白（全黑）的，请切换合成模式哦<br />预览碎片，一般来说<span
+                    style="color: red;">白底最小值，黑底最大值</span></span></div>
+        <div id="previewContainer"></div>
+        <h4>第二步：碎片合成中...</h4>
+        <button id="mergeButton">合成碎片</button>
+        <div id="mergedImageContainer"></div>
+        <h4>第三步：如果反转，那么...</h4>
+        <button id="negativeButton">反转颜色</button>
+        <div id="negativeImageContainer"></div>
+    </div>
+    <!-- 打散碎片部分 -->
+    <div id="splitSection" style="display: none;">
+        <h4>第一步：上传大老鼠图片</h4>
+        <div>
+            <input type="file" id="splitImageInput" accept="image/png, image/jpeg" style="display: none;">
+            <label for="splitImageInput" id="splitCustomFileButton" class="customButton">上传大老鼠图片</label>
+        </div>
+        <!-- 添加预览容器 -->
+        <div id="splitImagePreview" class="previewContainer"></div>
+        <h4>第二步：选择分片数量</h4>
+        <input type="number" id="splitCount" value="6" min="0">
+        <p id="splitCountWarning" style="color: red; display: none;">分片数小于 4 效果不佳哦！</p>
+        <h4>第三步：是否应用负片效果</h4>
+        <input type="checkbox" id="negativeEffect">
+        <label for="negativeEffect">应用负片效果</label>
+        <h4>第四步：生成碎片</h4>
+        <button id="splitButton">生成碎片</button>
+        <h4>第五步：预览与导出</h4>
+        <button id="batchDownloadButton">批量导出</button>
+        <p style="font-size: 10px;color: red;">苹果Safari浏览器可能无法批量导出哦～可以使用Chrome浏览器</p>
+        <div id="splitPreviewContainer"></div>
+    </div>
+
     <canvas id="resultCanvas" style="display: none;"></canvas>
     <script src="script.js"></script>
     <!-- 添加版权联系信息 -->
     <footer id="copyright">
-        <p>版权所有 &copy; kwhao  联系邮箱: <a href="mailto:kwh@kwhao.com">kwh@kwhao.com</a></p>
+        <p>版权所有 &copy; kwhao 联系邮箱: <a href="mailto:kwh@kwhao.com">kwh@kwhao.com</a></p>
         <p>项目Github地址：<a href="https://github.com/kwhao/RatPuzzle/">https://github.com/kwhao/RatPuzzle/</a></p>
+        <p>浙ICP备2020037739号</p>
     </footer>
 </body>
 

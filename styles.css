@@ -103,6 +103,110 @@ select {
     border-radius: 8px;
 }
 
+#modeSwitch {
+    margin-bottom: 20px;
+    background-color: #ecf0f1;
+    border-radius: 10px; 
+    display: inline-flex;
+    padding: 3px; 
+    position: relative;
+}
+
+.modeButton {
+    background-color: transparent;
+    color: #3498db; /* 未选中状态文字颜色 */
+    padding: 8px 32px; /* 增加左右 padding 以拉长按钮，从 16px 增加到 32px */
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 14px; 
+    transition: all 0.3s ease;
+    margin: 0;
+    z-index: 1;
+    transform: none; /* 取消放大效果 */
+    box-shadow: none; /* 取消阴影效果 */
+}
+
+.modeButton:hover {
+    background-color: transparent; /* 取消 hover 背景色变化 */
+    transform: none; /* 取消 hover 放大效果 */
+    box-shadow: none; /* 取消 hover 阴影效果 */
+}
+
+.modeButton.active {
+    color: white;
+    background-color: transparent; 
+    transform: none; /* 取消选中时放大效果 */
+    box-shadow: none; /* 取消选中时阴影效果 */
+}
+
+#modeSwitch::before {
+    content: '';
+    position: absolute;
+    border-radius: 8px; 
+    width: calc(50% - 3px); 
+    height: calc(100% - 6px); 
+    left: 3px;
+    top: 3px;
+    transition: transform 0.3s ease;
+}
+
+.modeButton:nth-child(1).active ~ #modeSwitch::before {
+    transform: translateX(0);
+}
+
+.modeButton:nth-child(2).active ~ #modeSwitch::before {
+    transform: translateX(100%);
+}
+
+.modeButton.active {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.customButton {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+.customButton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+#splitPreviewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+#splitPreviewContainer div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#splitPreviewContainer div button {
+    margin-top: 10px;
+    width: fit-content;
+}
+
 #copyright {
     margin-top: 40px;
     padding: 20px;
@@ -144,4 +248,38 @@ select {
     .previewImage {
         max-height: 180px;
     }
+}
+
+/* 分片数量输入框样式 */
+#splitCount {
+    padding: 12px 24px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+#splitCount:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* 分片数量警告信息样式 */
+#splitCountWarning {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+#splitImagePreview {
+    margin-top: 20px; /* 添加顶部边距，使预览容器与上传按钮保持一定距离 */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 100%; /* 确保预览容器不会超出页面宽度 */
+    overflow-x: auto; /* 当图片过多时，允许水平滚动 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
 }
